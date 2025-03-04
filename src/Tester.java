@@ -5,26 +5,28 @@ public class Tester {
         getLengthWaypointToWaypoint();
         addWaypointTest();
         getLengthZeroWaypoints();
+        getLengthWaypointToWaypointToWaypoint();
     }
 
     public static void getLengthZeroToWaypoint() throws Exception {
         Path test = new Path();
         test.addWaypoint(2, 1);
-        double expectedResult = 2.23606797749979;
+        double expectedResult = Math.sqrt(5);
         double testResult = test.getLength();
         if (testResult != expectedResult) {
-            throw new Exception("Exception in getLengthZeroToWaypoint (test 1)");
+            throw new Exception("getLengthZeroToWaypoint: Expected result: " + expectedResult + " current: " + testResult);
         }
     }
 
     public static void getLengthWaypointToWaypoint() throws Exception {
         Path test = new Path();
-        test.addWaypoint(3, 1);
-        test.addWaypoint(5, 2);
-        double expectedResult = 2.23606797749979;
+        test.addWaypoint(3, 4);
+        test.addWaypoint(5, 5);
         double testResult = test.getLength();
+        double expectedResult = Math.sqrt(25) + Math.sqrt(5);
         if (testResult != expectedResult) {
-            throw new Exception("Exception in getLengthWaypointToWaypoint (test 2)");
+            throw new Exception("getLengthWaypointToWaypoint: Expected result: " + expectedResult + " current: " + testResult);
+
         }
     }
 
@@ -34,7 +36,7 @@ public class Tester {
         Waypoint testResult = test.getWaypoints().getFirst();
         Waypoint expectedResult = new Waypoint(3, 1);
         if (!testResult.equals(expectedResult)) {
-            throw new Exception("Exception in addWaypointTest (test 3)");
+            throw new Exception("addWaypointTest: Expected result: " + expectedResult + " current: " + testResult);
         }
     }
 
@@ -43,7 +45,19 @@ public class Tester {
         double expectedResult = 0;
         double testResult = test.getLength();
         if (testResult != expectedResult) {
-            throw new Exception("Exception in getLengthZeroWaypoints (test 4)");
+            throw new Exception("getLengthZeroWaypoints: Expected result: " + expectedResult + " current: " + testResult);
+        }
+    }
+    public static void getLengthWaypointToWaypointToWaypoint() throws Exception {
+        Path test = new Path();
+        test.addWaypoint(1, 1);
+        test.addWaypoint(2, 2);
+        test.addWaypoint(3, 3);
+        double testResult = test.getLength();
+        double expectedResult = Math.sqrt(2) + Math.sqrt(2) + Math.sqrt(2);
+        if (testResult != expectedResult) {
+            throw new Exception("getLengthWaypointToWaypoint: Expected result: " + expectedResult + " current: " + testResult);
+
         }
     }
 

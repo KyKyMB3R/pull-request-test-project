@@ -8,11 +8,4 @@ public record Waypoint(int x, int y) {
         int dy = otherWaypoint.y - y;
         return Math.sqrt((dx * dx) + (dy * dy));
     }
-
-    public double distanceToZeroCord(Waypoint otherWaypoint) {
-        int dx = otherWaypoint.x;
-        int dy = otherWaypoint.y;
-        return Math.sqrt((dx * dx) + (dy * dy));
-    }
-
 }

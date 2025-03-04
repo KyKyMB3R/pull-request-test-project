@@ -20,10 +20,10 @@ public class Path {
         if (waypoints.isEmpty()) {
             return 0;
         }
-        Waypoint prevWaypoint = waypoints.getFirst();
+        Waypoint prevWaypoint = new Waypoint(0,0);
         double distance = 0;
         if (waypoints.size() > 1) {
-            for (int i = 1; i < waypoints.size(); i++) {
+            for (int i = 0; i < waypoints.size(); i++) {
                 Waypoint currentWaypoint = waypoints.get(i);
                 distance += prevWaypoint.distanceTo(currentWaypoint);
                 prevWaypoint = currentWaypoint;
@@ -31,7 +31,9 @@ public class Path {
             return distance;
         }
         if (waypoints.size() == 1) {
-            return prevWaypoint.distanceToZeroCord(waypoints.getFirst());
+            distance = waypoints.getFirst().distanceTo(new Waypoint(0,0));
+            return distance;
+
         }
         return distance;
     }
