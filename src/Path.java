@@ -8,7 +8,8 @@ public class Path {
 
     private final List<Waypoint> waypoints = new ArrayList<>();
 
-    public void addWaypoint(Waypoint waypoint) {
+    public void addWaypoint(int x, int y) {
+        Waypoint waypoint = new Waypoint(x, y);
         waypoints.add(waypoint);
     }
 
@@ -16,15 +17,27 @@ public class Path {
      * @return Length of the path when you connect all the waypoints
      */
     public double getLength() {
+        if (waypoints.isEmpty()) {
+            return 0;
+        }
         Waypoint prevWaypoint = waypoints.getFirst();
         double distance = 0;
-        for (int i = 1; i < waypoints.size(); i++) {
-            Waypoint currentWaypoint = waypoints.get(i);
-            distance += prevWaypoint.distanceTo(currentWaypoint);
-            prevWaypoint = currentWaypoint;
+        if (waypoints.size() > 1) {
+            for (int i = 1; i < waypoints.size(); i++) {
+                Waypoint currentWaypoint = waypoints.get(i);
+                distance += prevWaypoint.distanceTo(currentWaypoint);
+                prevWaypoint = currentWaypoint;
+            }
+            return distance;
         }
-
+        if (waypoints.size() == 1) {
+            return prevWaypoint.distanceToZeroCord(waypoints.getFirst());
+        }
         return distance;
     }
 
+    public List<Waypoint> getWaypoints() {
+        return waypoints;
+    }
 }
+
