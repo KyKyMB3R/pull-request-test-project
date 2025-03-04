@@ -48,6 +48,7 @@ public class Tester {
             throw new Exception("getLengthZeroWaypoints: Expected result: " + expectedResult + " current: " + testResult);
         }
     }
+
     public static void getLengthWaypointToWaypointToWaypoint() throws Exception {
         Path test = new Path();
         test.addWaypoint(1, 1);
